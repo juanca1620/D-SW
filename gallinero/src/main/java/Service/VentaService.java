@@ -2,31 +2,29 @@ package Service;
 
 import DTO.VentaDTO;
 import Model.Venta;
+import Repository.VentaRepository;
 
 public class VentaService implements ISERVICE<VentaDTO, Venta>{
-
+	
+	private VentaRepository repo = new VentaRepository();
 	@Override
-	public void save(VentaDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean save(VentaDTO dto) {
+		return repo.save(dto);
 	}
 
 	@Override
 	public VentaDTO getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getById(id);
 	}
 
 	@Override
-	public void update(VentaDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(VentaDTO dto) {
+		return repo.update(dto);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteById(int id) {
+		return deleteById(id);
 	}
 
 	@Override

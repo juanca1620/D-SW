@@ -2,31 +2,30 @@ package Service;
 
 import DTO.LoteDTO;
 import Model.Lote;
+import Repository.LoteRepository;
 
 public class LoteService implements ISERVICE<LoteDTO, Lote>{
-
+	
+	private LoteRepository repo = new LoteRepository();
+	
 	@Override
-	public void save(LoteDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean save(LoteDTO dto) {
+		return repo.save(dto);
 	}
 
 	@Override
 	public LoteDTO getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getById(id);
 	}
 
 	@Override
-	public void update(LoteDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(LoteDTO dto) {
+		return repo.update(dto);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteById(int id) {
+		return repo.deleteById(id);
 	}
 
 	@Override

@@ -2,31 +2,30 @@ package Service;
 
 import DTO.ReporteDTO;
 import Model.Reporte;
+import Repository.ReporteRepository;
 
 public class ReporteService implements ISERVICE<ReporteDTO, Reporte>{
-
+	
+	ReporteRepository repo= new ReporteRepository();
 	@Override
-	public void save(ReporteDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean save(ReporteDTO dto) {
+		return repo.save(dto);
 	}
 
 	@Override
 	public ReporteDTO getById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.getById(id);
 	}
 
 	@Override
-	public void update(ReporteDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(ReporteDTO dto) {
+		return repo.update(dto);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteById(int id) {
+		return repo.deleteById(id);
 	}
 
 	@Override

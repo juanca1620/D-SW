@@ -2,31 +2,29 @@ package Service;
 
 import DTO.UserDTO;
 import Model.Usuario;
+import Repository.UserRepository;
 
 public class UserService implements ISERVICE<UserDTO, Usuario>{
-
+	
+	private UserRepository repo = new UserRepository();
 	@Override
-	public void save(UserDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean save(UserDTO dto) {
+		return repo.save(dto);
 	}
 
 	@Override
 	public UserDTO getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getById(id);
 	}
 
 	@Override
-	public void update(UserDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(UserDTO dto) {
+		return repo.update(dto);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteById(int id) {
+		return repo.deleteById(id);
 	}
 
 	@Override
