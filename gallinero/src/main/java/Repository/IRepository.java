@@ -12,4 +12,5 @@ public interface IRepository <DTO>{
 	
 	public void update(DTO dto);
 	
+	public void removeChilds(int id);
 }
