@@ -54,9 +54,17 @@ CREATE TABLE lotes(
   nombre_ubicacion VARCHAR(100)
 )
 
+CREATE TABLE gallinas(
+  id INT PRIMARY KEY,
+  fecha_nacimiento DATE,
+  estado_salud BOOLEAN,
+  id_lote INT,
+  FOREIGN KEY (id_lote) REFERENCES lotes(id)
+)
 CREATE TABLE alimentacion(
   id INT AUTO_INCREMENT PRIMARY KEY,
   tipo_alimento VARCHAR(30),
+  cantidad_alimento 
   fecha_alimento DATE,
   id_lote INT,
   FOREIGN KEY (id_lote) REFERENCES lotes (id)

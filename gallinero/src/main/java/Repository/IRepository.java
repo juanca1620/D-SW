@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface IRepository <DTO>{
 	
-	public void save(DTO dto);
+	public boolean save(DTO dto);
 	
 	public DTO getById(int id);
 	
-	public void deleteById(int id);
+	public boolean deleteById(int id);
 	
-	public void update(DTO dto);
+	public boolean update(DTO dto);
 	
-	public void removeChilds(int id);
+	public boolean removeChilds(int id);
 }

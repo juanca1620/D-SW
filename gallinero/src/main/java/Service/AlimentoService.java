@@ -2,31 +2,28 @@ package Service;
 
 import DTO.AlimentoDTO;
 import Model.Alimento;
+import Repository.AlimentoRepository;
 
 public class AlimentoService implements ISERVICE<AlimentoDTO, Alimento>{
-
+	private AlimentoRepository repo = new AlimentoRepository();
 	@Override
-	public void save(AlimentoDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean save(AlimentoDTO dto) {
+		return repo.save(dto);
 	}
 
 	@Override
 	public AlimentoDTO getById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repo.getById(id);
 	}
 
 	@Override
-	public void update(AlimentoDTO dto) {
-		// TODO Auto-generated method stub
-		
+	public boolean update(AlimentoDTO dto) {
+		return repo.update(dto);
 	}
 
 	@Override
-	public void deleteById(int id) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteById(int id) {
+		return repo.deleteById(id);
 	}
 
 	@Override
