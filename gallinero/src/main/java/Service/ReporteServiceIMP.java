@@ -2,6 +2,7 @@ package Service;
 
 import DTO.ReporteDTO;
 import Repository.ReporteRepositoryIMP;
+import Verificator.ReporteVerificator;
 
 public class ReporteServiceIMP implements ReporteService<ReporteDTO>{
 	
@@ -9,7 +10,10 @@ public class ReporteServiceIMP implements ReporteService<ReporteDTO>{
         
 	@Override
 	public boolean save(ReporteDTO dto) {
-		return repo.save(dto);
+            if(ReporteVerificator.isReporteVacio(dto.getArgumento())){
+                throw new IllegalArgumentException("Error: El argumento del reporte no puede ser vacio");
+            }
+	    return repo.save(dto);
 	}
 
 	@Override

@@ -4,11 +4,22 @@
  */
 package Controller;
 
+import DTO.ReporteDTO;
+import Service.ReporteService;
+import Service.ReporteServiceIMP;
+
 /**
  *
  * @author USUARIO
  */
 public class ControladorGenerarReporte {
+
+    private ReporteService service;
+    
+    public ControladorGenerarReporte() {
+        service = new ReporteServiceIMP();
+    }
+    
     
     public int analizarTipo (String datoConbobox){
         if("reporte de produccion" == datoConbobox){
@@ -18,5 +29,9 @@ public class ControladorGenerarReporte {
         }else {
         	throw new IndexOutOfBoundsException("Error, este tipo de reporte NO EXISTE");
         }
+    }
+    
+    public boolean saveReporte (ReporteDTO dto){
+        return service.save(dto);
     }
 }

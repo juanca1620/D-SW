@@ -4,17 +4,21 @@
  */
 package Vista;
 
+import Controller.ControladorGenerarReporte;
+import DTO.ReporteDTO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lauravalencia
  */
 public class generarReporte extends javax.swing.JFrame {
 
-    /**
-     * Creates new form generarReporte
-     */
+    private ControladorGenerarReporte controlador;
+    
     public generarReporte() {
         initComponents();
+        controlador = new ControladorGenerarReporte();
     }
 
     /**
@@ -29,12 +33,14 @@ public class generarReporte extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cbElecion = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taArgumento = new javax.swing.JTextArea();
         btnEnviarReporte = new javax.swing.JButton();
+        txtId = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,10 +61,10 @@ public class generarReporte extends javax.swing.JFrame {
             .addGap(0, 14, Short.MAX_VALUE)
         );
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Reporte general de las gallinas", "reporte de produccion" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbElecion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--", "Reporte general de las gallinas", "reporte de produccion" }));
+        cbElecion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbElecionActionPerformed(evt);
             }
         });
 
@@ -66,11 +72,18 @@ public class generarReporte extends javax.swing.JFrame {
 
         jLabel3.setText("Escribe tu reporte ");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taArgumento.setColumns(20);
+        taArgumento.setRows(5);
+        jScrollPane1.setViewportView(taArgumento);
 
         btnEnviarReporte.setText("ENVIAR REPORTE");
+        btnEnviarReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarReporteActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Id Lote/Produccion");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,12 +96,15 @@ public class generarReporte extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnEnviarReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2)
+                        .addComponent(cbElecion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEnviarReporte, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtId)))
                 .addGap(21, 21, 21))
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,8 +116,12 @@ public class generarReporte extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbElecion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,9 +144,31 @@ public class generarReporte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void cbElecionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbElecionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_cbElecionActionPerformed
+
+    private void btnEnviarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarReporteActionPerformed
+
+        try {
+            String tipo = cbElecion.getSelectedItem().toString();
+            int id = Integer.parseInt(txtId.getText());
+            String argumento = taArgumento.getText();
+            
+            ReporteDTO dto = new ReporteDTO(0, argumento, controlador.analizarTipo(tipo), id);
+            
+            boolean respuesta = controlador.saveReporte(dto);
+            
+            if(respuesta){
+                JOptionPane.showMessageDialog(null, "Reporte guardado con exito!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error: no se pudo guardar este reporte");
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnEnviarReporteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,13 +207,15 @@ public class generarReporte extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviarReporte;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cbElecion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea taArgumento;
+    private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }
