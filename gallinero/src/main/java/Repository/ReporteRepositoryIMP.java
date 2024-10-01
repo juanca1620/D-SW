@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 
 import DTO.ReporteDTO;
 import dataBaseConfig.DataBaseConfig;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReporteRepositoryIMP implements ReporteRepository <ReporteDTO>{
 
@@ -22,8 +24,8 @@ public class ReporteRepositoryIMP implements ReporteRepository <ReporteDTO>{
                             stament.setNull(4, java.sql.Types.INTEGER);
                             break;
                         case 2:
-                            stament.setInt(3, java.sql.Types.INTEGER);
-                            stament.setNull(4, dto.getIdPadre());
+                            stament.setNull(3, java.sql.Types.INTEGER);
+                            stament.setInt(4, dto.getIdPadre());
                             break;
                         default:
                             return false;
@@ -91,5 +93,41 @@ public class ReporteRepositoryIMP implements ReporteRepository <ReporteDTO>{
 		
 		return false;
 	}
+
+    public List<ReporteDTO> returnProductionReports() {
+        ArrayList<ReporteDTO> lista = new ArrayList<ReporteDTO>();
+        String query = "SELECT * FROM reportes WHERE id_produccion IS NOT NULL";
+        try (Connection conection = DataBaseConfig.getConnection(); PreparedStatement statment = conection.prepareStatement(query)) {
+            ResultSet set = statment.executeQuery();
+            if (set.next()) {
+                do {
+                    ReporteDTO dto = new ReporteDTO(set.getInt(1), set.getString(2), 1, set.getInt(4));
+                    lista.add(dto);
+                } while (set.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
+            
+
+
+    public List<ReporteDTO> returnBatchReports() {
+        ArrayList<ReporteDTO> lista = new ArrayList<ReporteDTO>();
+        String query = "SELECT * FROM reportes WHERE id_lote IS NOT NULL";
+        try (Connection conection = DataBaseConfig.getConnection(); PreparedStatement statment = conection.prepareStatement(query)) {
+            ResultSet set = statment.executeQuery();
+            if (set.next()) {
+                do {
+                    ReporteDTO dto = new ReporteDTO(set.getInt(1), set.getString(2), 2, set.getInt(5));
+                    lista.add(dto);
+                } while (set.next());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return lista;
+    }
 
 }

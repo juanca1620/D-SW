@@ -1,5 +1,7 @@
 package Repository;
 
+import java.util.List;
+
 public interface ReporteRepository <DTO>{
 	public boolean save(DTO dto);
 	
@@ -8,4 +10,8 @@ public interface ReporteRepository <DTO>{
 	public boolean deleteById(int id);
 	
 	public boolean update(DTO dto);
+        
+        public List<DTO> returnProductionReports ();
+        
+        public List<DTO> returnBatchReports();
 }

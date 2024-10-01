@@ -321,6 +321,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="cantidadHuevos_txt">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cantidadHuevos_txtKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
@@ -335,6 +338,9 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="idLote_txt">
+                  <Events>
+                    <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="idLote_txtKeyTyped"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEnviarReportes">
                   <Properties>
@@ -470,6 +476,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="VER REPORTES GENERALES"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVerReportesGeneralesActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel8">
                   <Properties>

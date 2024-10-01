@@ -1,5 +1,7 @@
 package Service;
 
+import java.util.List;
+
 public interface ReporteService <DTO>{
 	public boolean save (DTO dto);
 	
@@ -8,4 +10,8 @@ public interface ReporteService <DTO>{
 	public boolean update (DTO dto);
 	
 	public boolean deleteById (int id);
+        
+        public List<DTO> returnProductionReports ();
+        
+        public List<DTO> returnBatchReports();
 }

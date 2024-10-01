@@ -83,6 +83,12 @@ public class generarReporte extends javax.swing.JFrame {
             }
         });
 
+        txtId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("Id Lote/Produccion");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,6 +175,13 @@ public class generarReporte extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }//GEN-LAST:event_btnEnviarReporteActionPerformed
+
+    private void txtIdKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdKeyTyped
+       if (!Character.isDigit(evt.getKeyChar())) {
+            JOptionPane.showMessageDialog(null,"Este campo no acepta otra cosa que no sea un numero");
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdKeyTyped
 
     /**
      * @param args the command line arguments

@@ -19,7 +19,7 @@ public class ControladorAdminGeneral {
     
     public LocalDate isoToLocalDate (String fecha){
         if(!verificarFormatoFecha(fecha)){
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Este formato de fecha es invalido");
         }
         return LocalDate.parse(fecha);
     }

@@ -134,9 +134,21 @@ public class adminGeneral extends javax.swing.JFrame {
 
         jLabel3.setText("cantidad de huevos");
 
+        cantidadHuevos_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                cantidadHuevos_txtKeyTyped(evt);
+            }
+        });
+
         jLabel4.setText("fecha de produccion");
 
         jLabel5.setText("id del lote");
+
+        idLote_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                idLote_txtKeyTyped(evt);
+            }
+        });
 
         btnEnviarReportes.setText("Crear Produccion");
         btnEnviarReportes.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +212,11 @@ public class adminGeneral extends javax.swing.JFrame {
         );
 
         btnVerReportesGenerales.setText("VER REPORTES GENERALES");
+        btnVerReportesGenerales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerReportesGeneralesActionPerformed(evt);
+            }
+        });
 
         jPanel8.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -448,6 +465,28 @@ public class adminGeneral extends javax.swing.JFrame {
         generarReporte ventana  = new generarReporte();
         ventana.setVisible(true);
     }//GEN-LAST:event_btnGenerarReportesGallinasActionPerformed
+
+    private void btnVerReportesGeneralesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerReportesGeneralesActionPerformed
+
+        this.dispose();
+        reportesGenerales ventana = new reportesGenerales();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnVerReportesGeneralesActionPerformed
+
+    private void cantidadHuevos_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantidadHuevos_txtKeyTyped
+
+        if (!Character.isDigit(evt.getKeyChar())) {
+            JOptionPane.showMessageDialog(null,"Este campo no acepta otra cosa que no sea un numero");
+            evt.consume();
+        }
+    }//GEN-LAST:event_cantidadHuevos_txtKeyTyped
+
+    private void idLote_txtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idLote_txtKeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            JOptionPane.showMessageDialog(null, "Este campo no acepta otra cosa que no sea un numero");
+            evt.consume();
+        }
+    }//GEN-LAST:event_idLote_txtKeyTyped
 
     /**
      * @param args the command line arguments

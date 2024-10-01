@@ -4,17 +4,24 @@
  */
 package Vista;
 
+import Controller.ControladorReportesGenerales;
+import DTO.ReporteDTO;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author lauravalencia
  */
 public class reportesGenerales extends javax.swing.JFrame {
 
-    /**
-     * Creates new form reportesGenerales
-     */
+    ControladorReportesGenerales controlador;
+    
     public reportesGenerales() {
         initComponents();
+        controlador = new ControladorReportesGenerales();
+        llenarReporteLotes();
+        llenarReporteProduccion();
     }
 
     /**
@@ -31,11 +38,11 @@ public class reportesGenerales extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbLotes = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tbProduccion = new javax.swing.JTable();
         btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +65,7 @@ public class reportesGenerales extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 3, 13)); // NOI18N
         jLabel1.setText("Reporte General de las gallinas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbLotes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,7 +76,7 @@ public class reportesGenerales extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbLotes);
 
         jPanel7.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -87,7 +94,7 @@ public class reportesGenerales extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Helvetica Neue", 3, 13)); // NOI18N
         jLabel2.setText("Reporte de produccion");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbProduccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -98,9 +105,14 @@ public class reportesGenerales extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tbProduccion);
 
         btnRegresar.setText("REGRESAR");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,8 +150,9 @@ public class reportesGenerales extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(btnRegresar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRegresar)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,9 +163,7 @@ public class reportesGenerales extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -173,6 +184,43 @@ public class reportesGenerales extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+
+        this.dispose();
+        adminGeneral ventana = new adminGeneral();
+        ventana.setVisible(true);
+        
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void llenarReporteLotes(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[] {"id reporte","argumento","id lote"});
+        List lista = controlador.devolverReporteLotes();
+        for (int i = 0; i < lista.size(); i++) {
+            ReporteDTO dto = (ReporteDTO) lista.get(i);
+            model.addRow(new Object[]{
+                dto.getId(),
+                dto.getArgumento(),
+                dto.getIdPadre()
+            });
+        }
+        tbLotes.setModel(model);
+    }
+    
+        private void llenarReporteProduccion(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new Object[] {"id reporte","argumento","id produccion"});
+        List lista = controlador.devolverReporteProducciones();
+        for (int i = 0; i < lista.size(); i++) {
+            ReporteDTO dto = (ReporteDTO) lista.get(i);
+            model.addRow(new Object[]{
+                dto.getId(),
+                dto.getArgumento(),
+                dto.getIdPadre()
+            });
+        }
+        tbProduccion.setModel(model);
+    }
     /**
      * @param args the command line arguments
      */
@@ -218,7 +266,7 @@ public class reportesGenerales extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tbLotes;
+    private javax.swing.JTable tbProduccion;
     // End of variables declaration//GEN-END:variables
 }

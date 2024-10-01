@@ -3,6 +3,7 @@ package Service;
 import DTO.ReporteDTO;
 import Repository.ReporteRepositoryIMP;
 import Verificator.ReporteVerificator;
+import java.util.List;
 
 public class ReporteServiceIMP implements ReporteService<ReporteDTO>{
 	
@@ -31,6 +32,14 @@ public class ReporteServiceIMP implements ReporteService<ReporteDTO>{
 	public boolean deleteById(int id) {
 		return repo.deleteById(id);
 	}
+
+    public List<ReporteDTO> returnProductionReports() {
+        return repo.returnProductionReports();
+    }
+
+    public List<ReporteDTO> returnBatchReports() {
+         return repo.returnBatchReports();
+    }
 
 	
 }
