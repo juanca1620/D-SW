@@ -178,18 +178,17 @@
                                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                       <Component id="btnEnviarReportes" alignment="0" pref="177" max="32767" attributes="0"/>
                                                       <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="cantidadHuevos_txt" alignment="0" max="32767" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="btnGenerarReportes" pref="177" max="32767" attributes="0"/>
+                                                      <Component id="fechaProduccion_txt" alignment="0" min="-2" pref="177" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jTextField3" min="-2" pref="177" max="-2" attributes="0"/>
+                                                      <Component id="idLote_txt" min="-2" pref="177" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -208,20 +207,12 @@
                                                       <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
                                                       <Component id="btnGenerarReportesGallina" alignment="0" pref="177" max="32767" attributes="0"/>
                                                   </Group>
+                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                              <Component id="jComboBox1" alignment="0" pref="177" max="32767" attributes="0"/>
-                                                              <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="jTextField7" max="32767" attributes="0"/>
-                                                          </Group>
-                                                      </Group>
-                                                      <Group type="102" attributes="0">
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                          <Component id="btnGenerarReportesGallinas" pref="189" max="32767" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="jComboBox1" alignment="0" pref="177" max="32767" attributes="0"/>
+                                                      <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="jTextField7" max="32767" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -236,6 +227,8 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                                           <Component id="btnVerReportesGenerales" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="btnGenerarReportesGallinas" min="-2" pref="189" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -259,15 +252,12 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cantidadHuevos_txt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fechaProduccion_txt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="idLote_txt" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="btnEnviarReportes" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnGenerarReportes" min="-2" pref="23" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnEnviarReportes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -301,14 +291,14 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jTextField9" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnGenerarReportesGallina" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnGenerarReportesGallinas" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnGenerarReportesGallina" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="btnVerReportesGenerales" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="btnVerReportesGenerales" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnGenerarReportesGallinas" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="jPanel8" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -330,31 +320,29 @@
                     <Property name="text" type="java.lang.String" value="cantidad de huevos"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="cantidadHuevos_txt">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="fecha de produccion"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField2">
+                <Component class="javax.swing.JTextField" name="fechaProduccion_txt">
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel5">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="id del lote"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
+                <Component class="javax.swing.JTextField" name="idLote_txt">
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEnviarReportes">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Enviar Reporte "/>
+                    <Property name="text" type="java.lang.String" value="Crear Produccion"/>
                   </Properties>
-                </Component>
-                <Component class="javax.swing.JButton" name="btnGenerarReportes">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="Generar Reporte"/>
-                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEnviarReportesActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel6">
                   <Properties>
@@ -454,6 +442,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Generar Reporte"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarReportesGallinasActionPerformed"/>
+                  </Events>
                 </Component>
                 <Container class="javax.swing.JPanel" name="jPanel7">
                   <Properties>

@@ -4,17 +4,22 @@
  */
 package Vista;
 
+import Controller.ControladorAdminGeneral;
+import DTO.ProduccionDTO;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author lauravalencia
  */
 public class adminGeneral extends javax.swing.JFrame {
-
-    /**
-     * Creates new form adminGeneral
-     */
+    
+    ControladorAdminGeneral controlador =  new ControladorAdminGeneral();
+    
     public adminGeneral() {
         initComponents();
+        controlador = new ControladorAdminGeneral();
     }
 
     /**
@@ -35,13 +40,12 @@ public class adminGeneral extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        cantidadHuevos_txt = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        fechaProduccion_txt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        idLote_txt = new javax.swing.JTextField();
         btnEnviarReportes = new javax.swing.JButton();
-        btnGenerarReportes = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -134,9 +138,12 @@ public class adminGeneral extends javax.swing.JFrame {
 
         jLabel5.setText("id del lote");
 
-        btnEnviarReportes.setText("Enviar Reporte ");
-
-        btnGenerarReportes.setText("Generar Reporte");
+        btnEnviarReportes.setText("Crear Produccion");
+        btnEnviarReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarReportesActionPerformed(evt);
+            }
+        });
 
         jPanel6.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -173,6 +180,11 @@ public class adminGeneral extends javax.swing.JFrame {
         btnGenerarReportesGallina.setText("Enviar Reporte ");
 
         btnGenerarReportesGallinas.setText("Generar Reporte");
+        btnGenerarReportesGallinas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReportesGallinasActionPerformed(evt);
+            }
+        });
 
         jPanel7.setBackground(new java.awt.Color(102, 51, 0));
 
@@ -271,16 +283,15 @@ public class adminGeneral extends javax.swing.JFrame {
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(btnEnviarReportes, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addComponent(cantidadHuevos_txt, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(29, 29, 29)
-                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel4)
-                                            .addComponent(jTextField2)
-                                            .addComponent(btnGenerarReportes, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                                            .addComponent(fechaProduccion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(33, 33, 33)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel5)
-                                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(idLote_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(16, 16, 16)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -294,17 +305,12 @@ public class adminGeneral extends javax.swing.JFrame {
                                             .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(btnGenerarReportesGallina, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE))
+                                        .addGap(30, 30, 30)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jComboBox1, 0, 177, Short.MAX_VALUE)
-                                                    .addComponent(jLabel8)
-                                                    .addComponent(jLabel11)
-                                                    .addComponent(jTextField7)))
-                                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)))
+                                            .addComponent(jComboBox1, 0, 177, Short.MAX_VALUE)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jTextField7))
                                         .addGap(26, 26, 26)
                                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jLabel12)
@@ -313,7 +319,9 @@ public class adminGeneral extends javax.swing.JFrame {
                                             .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))))
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(btnVerReportesGenerales)))
+                                .addComponent(btnVerReportesGenerales)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -330,13 +338,11 @@ public class adminGeneral extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cantidadHuevos_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaProduccion_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idLote_txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnEnviarReportes)
-                    .addComponent(btnGenerarReportes, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnEnviarReportes)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -366,13 +372,13 @@ public class adminGeneral extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGenerarReportesGallina)
-                    .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnGenerarReportesGallina)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnVerReportesGenerales)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVerReportesGenerales)
+                    .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -417,6 +423,32 @@ public class adminGeneral extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnEnviarReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarReportesActionPerformed
+
+        try {
+            int cantidadHuevos = Integer.parseInt(cantidadHuevos_txt.getText());
+            String fechaProduccion = fechaProduccion_txt.getText();
+            int idLote = Integer.parseInt(idLote_txt.getText());
+            
+            boolean respuesta = controlador.saveProduccion(new ProduccionDTO(0, cantidadHuevos, controlador.isoToLocalDate(fechaProduccion), idLote));
+            
+            if (respuesta) {
+                JOptionPane.showMessageDialog(null, "Produccion guardada con exito");
+            }else{
+                JOptionPane.showMessageDialog(null, "Error: algo fallo en la ejecucion");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnEnviarReportesActionPerformed
+
+    private void btnGenerarReportesGallinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportesGallinasActionPerformed
+
+        this.dispose();
+        generarReporte ventana  = new generarReporte();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnGenerarReportesGallinasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -454,10 +486,12 @@ public class adminGeneral extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviarReportes;
-    private javax.swing.JButton btnGenerarReportes;
     private javax.swing.JButton btnGenerarReportesGallina;
     private javax.swing.JButton btnGenerarReportesGallinas;
     private javax.swing.JButton btnVerReportesGenerales;
+    private javax.swing.JTextField cantidadHuevos_txt;
+    private javax.swing.JTextField fechaProduccion_txt;
+    private javax.swing.JTextField idLote_txt;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -487,9 +521,6 @@ public class adminGeneral extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
