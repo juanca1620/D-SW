@@ -73,6 +73,7 @@ public class adminGeneral extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
+        btnGenerarReportesGallinas1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -279,6 +280,13 @@ public class adminGeneral extends javax.swing.JFrame {
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
+        btnGenerarReportesGallinas1.setText("Tablas con Polli-Bot");
+        btnGenerarReportesGallinas1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarReportesGallinas1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -290,6 +298,7 @@ public class adminGeneral extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -338,9 +347,10 @@ public class adminGeneral extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnVerReportesGenerales)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnGenerarReportesGallinas1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -395,7 +405,8 @@ public class adminGeneral extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerReportesGenerales)
-                    .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGenerarReportesGallinas, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGenerarReportesGallinas1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -488,6 +499,13 @@ public class adminGeneral extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_idLote_txtKeyTyped
 
+    private void btnGenerarReportesGallinas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarReportesGallinas1ActionPerformed
+
+        this.dispose();
+        VentanaTablasIA ventana = new VentanaTablasIA();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_btnGenerarReportesGallinas1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -527,6 +545,7 @@ public class adminGeneral extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviarReportes;
     private javax.swing.JButton btnGenerarReportesGallina;
     private javax.swing.JButton btnGenerarReportesGallinas;
+    private javax.swing.JButton btnGenerarReportesGallinas1;
     private javax.swing.JButton btnVerReportesGenerales;
     private javax.swing.JTextField cantidadHuevos_txt;
     private javax.swing.JTextField fechaProduccion_txt;

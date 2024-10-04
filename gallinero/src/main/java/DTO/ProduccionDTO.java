@@ -16,6 +16,10 @@ public class ProduccionDTO {
 		this.fechaProduccion = fechaProduccion;
 		this.idLote = idLote;
 	}
+        
+        public ProduccionDTO(){
+            
+        }
 	
 	public int getId() {
 		return id;
