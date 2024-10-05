@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import sun.jvm.hotspot.oops.Metadata;
@@ -23,45 +24,33 @@ import sun.jvm.hotspot.oops.Metadata;
  */
 public class IARepositoryIMP implements IARepository {
 
-    public Object[][] executeQuery(String query) {
+    public List<List<Object>> executeQuery(String query) {
 
-        Object[][] tabla = new Object[0][0];
-
-        try (Connection connecion = DataBaseConfig.getConnection(); PreparedStatement statment = connecion.prepareStatement(query)) {
-            ResultSet set = statment.executeQuery();
-
-            ResultSetMetaData estructura = set.getMetaData();
-
-            int columnas = estructura.getColumnCount();
-            String[] nombreColumnas = new String[columnas];
-
-            for (int i = 0; i < columnas; i++) {
-                nombreColumnas[i] = estructura.getCatalogName(i);
+        try (Connection connecion = DataBaseConfig.getConnection(); PreparedStatement statment = connecion.prepareStatement(query);
+                ResultSet set = statment.executeQuery();) {
+            
+            ResultSetMetaData estructuraSet = set.getMetaData();
+            List<List<Object>> matriz = new  ArrayList<>();
+            
+            int filas = estructuraSet.getColumnCount();
+            
+            for (int i = 0; i < filas; i++) {
+                matriz.add(new ArrayList<Object>());
             }
             
-            int filas = 0;
-
-            while (set.next()) {
-                filas++;
+            for (int i = 0; i < matriz.size(); i++) {
+                matriz.get(i).add(estructuraSet.getColumnName(i + 1));
             }
-
-            set.first();
-
-            tabla = new Object[filas][columnas];
-            tabla[0] = nombreColumnas;
             
-            for (Object[] fila : tabla) {
-                
-                for (int i = 0; i < fila.length; i++) {
-                    fila[i] = set.getObject(i);
+            while (set.next()) {                
+                for (int i = 0; i < filas; i++) {
+                    matriz.get(i).add(set.getObject(i + 1));
                 }
-
             }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            return matriz;
+        } catch (SQLException e) {
+            throw  new RuntimeException("Error: algo paso con la base de datos");
         }
-        return tabla;
     }
     
 }

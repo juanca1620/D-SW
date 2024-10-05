@@ -4,16 +4,16 @@
  */
 package Service;
 
+import java.util.List;
+
 /**
  *
  * @author USUARIO
  */
 public interface IAService {
     
-    public String giveSQLCode ();
+    public String giveSQLCode (String promt);
     
-    public String giveAPersonalityMensagge ();
-    
-    public Object[][] getTable ();
+    public List<List<Object>> getTable (String query);
     
 }

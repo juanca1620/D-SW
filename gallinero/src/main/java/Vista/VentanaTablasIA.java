@@ -4,17 +4,23 @@
  */
 package Vista;
 
+import Controller.ControladorTablasIA;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author USUARIO
  */
 public class VentanaTablasIA extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VetanaTablasIA
-     */
+    private ControladorTablasIA controlador;
     public VentanaTablasIA() {
         initComponents();
+        controlador = new ControladorTablasIA();
+        IAtable.setModel(new DefaultTableModel());
     }
 
     /**
@@ -27,7 +33,7 @@ public class VentanaTablasIA extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        IAtable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         TApromt = new javax.swing.JTextArea();
         btnEnviar = new javax.swing.JButton();
@@ -35,7 +41,7 @@ public class VentanaTablasIA extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        IAtable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -46,13 +52,18 @@ public class VentanaTablasIA extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(IAtable);
 
         TApromt.setColumns(20);
         TApromt.setRows(5);
         jScrollPane2.setViewportView(TApromt);
 
         btnEnviar.setText("Enviar");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -72,22 +83,22 @@ public class VentanaTablasIA extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(16, 16, 16))))
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEnviar)
                     .addComponent(btnVolver))
@@ -104,6 +115,20 @@ public class VentanaTablasIA extends javax.swing.JFrame {
         ventana.setVisible(true);
         
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
+
+        if (isCampsEmpty()) {
+            JOptionPane.showMessageDialog(null, "Antes de enviarle la peticion a polli-bot, porfavor ingresar algun texto");
+        }
+        try {
+            String promt = TApromt.getText();
+            llenarTablas(controlador.matrizConsulta(promt));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+    }//GEN-LAST:event_btnEnviarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,13 +165,38 @@ public class VentanaTablasIA extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean isCampsEmpty (){
+        return TApromt.getText().isEmpty();
+    }
+    
+    private void llenarTablas (List<List<Object>> matriz){
+        DefaultTableModel model = new DefaultTableModel();
+        
+        Object[] encabezados = new Object[matriz.size()];
+        for (int i = 0; i < matriz.size(); i++) {
+            encabezados[i] = matriz.get(i).get(0);
+        }
+        
+        model.setColumnIdentifiers(encabezados);
+        
+        for (int i = 1; i < matriz.get(0).size(); i++) {
+            Object[] fila = new Object[matriz.size()];
+            for (int j = 0; j < matriz.size(); j++) {
+                fila[j] = matriz.get(j).get(i);
+            }
+            model.addRow(fila);
+        }
+        
+        IAtable.setModel(model);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable IAtable;
     private javax.swing.JTextArea TApromt;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
