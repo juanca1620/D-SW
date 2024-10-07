@@ -2,6 +2,7 @@ package Service;
 
 import DTO.LoteDTO;
 import Repository.LoteRepositoryIMP;
+import java.util.List;
 
 public class LoteServiceIMP implements LoteService<LoteDTO>{
 	
@@ -26,4 +27,10 @@ public class LoteServiceIMP implements LoteService<LoteDTO>{
 	public boolean deleteById(int id) {
 		return repo.deleteById(id);
 	}
+
+    public List<LoteDTO> missingToFeed() {
+        return repo.missingToFeed();
+    }
+        
+        
 }

@@ -1,5 +1,6 @@
 package Repository;
 
+import DTO.AlimentoDTO;
 import java.awt.Taskbar.State;
 import java.sql.Connection;
 import java.sql.Date;
@@ -8,6 +9,9 @@ import java.sql.ResultSet;
 
 import DTO.LoteDTO;
 import dataBaseConfig.DataBaseConfig;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LoteRepositoryIMP implements LoteRepository<LoteDTO>{
 
@@ -84,5 +88,23 @@ public class LoteRepositoryIMP implements LoteRepository<LoteDTO>{
 		
 	}
 
-
+    public List<LoteDTO> missingToFeed() {
+        String query = "SELECT l.id, l.nombre, l.nombre_ubicacion\n"
+                + "FROM lotes l\n"
+                + "LEFT JOIN alimentacion a ON l.id = a.id_lote AND a.fecha_alimento = CURDATE()\n"
+                + "WHERE a.id IS NULL;";
+        List<LoteDTO> lista = new ArrayList<LoteDTO>();
+        
+        try (Connection connection = DataBaseConfig.getConnection();
+                PreparedStatement statment = connection.prepareStatement(query)){
+            ResultSet set = statment.executeQuery();
+            while (set.next()) {                
+                LoteDTO dto = new LoteDTO(set.getInt(1), set.getString(2), set.getString(3));
+                lista.add(dto);
+            }
+        } catch (SQLException e) {
+        }
+        return lista;
+    }
+    
 }

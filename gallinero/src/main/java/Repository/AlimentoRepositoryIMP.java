@@ -7,17 +7,21 @@ import java.sql.ResultSet;
 
 import DTO.AlimentoDTO;
 import dataBaseConfig.DataBaseConfig;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AlimentoRepositoryIMP implements AlimentoRepository<AlimentoDTO>{
 
 	@Override
 	public boolean save(AlimentoDTO dto) {
-		String query = "INSERT INTO alimentacion(tipo_alimento,fecha_alimento,id_lote) VALUES (?,?,?)";
+		String query = "INSERT INTO alimentacion(tipo_alimento,cantidad_alimento,fecha_alimento,id_lote) VALUES (?,?,?,?)";
 		try (Connection connection = DataBaseConfig.getConnection();
 				PreparedStatement stament = connection.prepareStatement(query)){
 			stament.setString(1, dto.getTipoAlimento());
-			stament.setDate(2, Date.valueOf(dto.getFechaAlimento()));
-			stament.setInt(3, dto.getId());
+                        stament.setInt(2, dto.getCantidadAlimento());
+			stament.setDate(3, Date.valueOf(dto.getFechaAlimento()));
+			stament.setInt(4, dto.getIdLote());
 			
 			return 0 <stament.executeUpdate();
 			
@@ -35,7 +39,7 @@ public class AlimentoRepositoryIMP implements AlimentoRepository<AlimentoDTO>{
 			statement.setInt(1, id);
 			ResultSet set = statement.executeQuery();
 			if(set.next()){
-				return new AlimentoDTO(set.getInt("id"), set.getString("tipo_alimento"), set.getDate("fecha_alimento").toLocalDate(), set.getInt("id_lote"));
+				return new AlimentoDTO(set.getInt("id"), set.getString("tipo_alimento"),set.getInt(3), set.getDate("fecha_alimento").toLocalDate(), set.getInt("id_lote"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,5 +77,21 @@ public class AlimentoRepositoryIMP implements AlimentoRepository<AlimentoDTO>{
 		}
 		return false;
 	}
+
+    public List<AlimentoDTO> returnAll() {
+       String query = "SELECT * FROM alimentacion";
+       List<AlimentoDTO> lista = new ArrayList<AlimentoDTO>();
+        try (Connection connection = DataBaseConfig.getConnection();
+                PreparedStatement statment = connection.prepareStatement(query)) {
+            ResultSet set = statment.executeQuery();
+            while (set.next()) {               
+                AlimentoDTO dto = new AlimentoDTO(set.getInt(1), set.getString(2), set.getInt(3), set.getDate(4).toLocalDate(), set.getInt(5));
+                lista.add(dto);
+            }
+        } catch (SQLException e) {
+
+        }
+        return lista;
+    }
 
 }

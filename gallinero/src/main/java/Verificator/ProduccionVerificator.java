@@ -1,15 +1,14 @@
 package Verificator;
 
+import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import util.DateUtil;
 
 public class ProduccionVerificator {
     
-    public static boolean verificarFormatoFecha (String fecha){
-        String regex = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-([0-2]\\d | 3[01])$"; 
-        Pattern pattern =  Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(fecha);
-        return matcher.matches();
+    public static LocalDate verificarFormatoFecha (String fecha){
+        return DateUtil.isoToLocalDate(fecha);
     }
     
     public static boolean isCantidadValida (int cantidadHuevos){

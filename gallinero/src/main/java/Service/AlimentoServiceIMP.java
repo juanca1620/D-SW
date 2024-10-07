@@ -2,6 +2,7 @@ package Service;
 
 import DTO.AlimentoDTO;
 import Repository.AlimentoRepositoryIMP;
+import java.util.List;
 
 public class AlimentoServiceIMP implements AlimentoService<AlimentoDTO>{
 	private AlimentoRepositoryIMP repo = new AlimentoRepositoryIMP();
@@ -24,4 +25,8 @@ public class AlimentoServiceIMP implements AlimentoService<AlimentoDTO>{
 	public boolean deleteById(int id) {
 		return repo.deleteById(id);
 	}
+
+    public List<AlimentoDTO> getAll() {
+         return repo.returnAll();
+    }
 }

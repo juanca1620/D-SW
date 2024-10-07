@@ -5,12 +5,14 @@ import java.time.LocalDate;
 public class AlimentoDTO {
 	private int id;
 	private String tipoAlimento;
+        private int cantidadAlimento;
 	private LocalDate fechaAlimento;
 	private int idLote;
 	
-	public AlimentoDTO(int id, String tipoAlimento, LocalDate fechaAlimento, int idLote) {
+	public AlimentoDTO(int id, String tipoAlimento,int cantidadAlimento, LocalDate fechaAlimento, int idLote) {
 		this.id = id;
 		this.tipoAlimento = tipoAlimento;
+                this.cantidadAlimento = cantidadAlimento;
 		this.fechaAlimento = fechaAlimento;
 		this.idLote = idLote;
 	}
@@ -39,6 +41,14 @@ public class AlimentoDTO {
 	public void setIdLote(int idLote) {
 		this.idLote = idLote;
 	}
+
+    public int getCantidadAlimento() {
+        return cantidadAlimento;
+    }
+
+    public void setCantidadAlimento(int cantidadAlimento) {
+        this.cantidadAlimento = cantidadAlimento;
+    }
 	
 	
 }

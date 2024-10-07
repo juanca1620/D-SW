@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import DTO.ProduccionDTO;
 import Service.ProduccionService;
@@ -83,5 +85,12 @@ public class ProduccionRepositoryIMP implements ProduccionService<ProduccionDTO>
 		}
 		return false;
 	}
+
+    public boolean verificarFormatoFecha (String fecha){
+        String regex = "^(19|20)\\d{2}-(0[1-9]|1[0-2])-([0-2]\\d | 3[01])$"; 
+        Pattern pattern =  Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(fecha);
+        return matcher.matches();
+    }
 
 }
